@@ -27,26 +27,19 @@ public class 촌수계산 {
             relative[child] = parent;
         }
 
-        int i = targetA;
         int cntA = 0;
-        while(relative[i] != 0) {
-            i = relative[i] > 0 ? relative[i] : i;
+        int resultCnt = -1;
+        for(int i = targetA; i > 0 && resultCnt == -1; i = relative[i]) {
+            int cntB = 0;
+            for(int j = targetB; j > 0;  j = relative[j]) {
+                if (i == j) {
+                    resultCnt = cntA + cntB;
+                }
+                cntB++;
+            }
             cntA++;
         }
 
-        int j = targetB;
-        int cntB = 0;
-        while(relative[j] != 0) {
-            j = relative[j] > 0 ? relative[j] : j;
-            cntB++;
-        }
-
-        if(i != j) {
-            System.out.println(-1);
-        } else if(cntA == cntB) {
-            System.out.println(cntA);
-        } else {
-            System.out.println(cntA+cntB);
-        }
+        System.out.println(resultCnt);
     }
 }
